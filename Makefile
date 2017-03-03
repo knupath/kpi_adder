@@ -21,7 +21,7 @@ CPPFLAGS       :=-I$(KNUPATH_INSTALL)/include \
                  -I$(KNUPATH_INSTALL)/include/kpi
 CXXFLAGS       :=-std=c++11
 LDFLAGS        :=-L$(KNUPATH_INSTALL)/lib -Wl,-rpath,$(KNUPATH_INSTALL)/lib
-LDLIBS         :=-lkpirt -lism -llfi
+LDLIBS         :=-lkpirt
 
 .PHONY: all run clean
 

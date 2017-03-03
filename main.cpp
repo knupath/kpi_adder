@@ -62,13 +62,17 @@ int main(int argc, char* argv[])
   int i;
   int data[] = {1, 1, 1, 2, 2, 2, 3, 4, 5, 6, 7, -1, -33};
 
+  // Send the number of data that will be sent to the kernel.
+  const int num_data = sizeof(data) / sizeof(data[0]);
+  hc.Send(&num_data, 1, 0);
+
   // Define flit_buffer to size 1. In this example, we only communicate with
   // 1 tDSP, with an expected receive of 1 packet.
   std::vector<kpi_flit_max> flit_buffer(1);
 
   // Send data[] elements one-by-one to the Kernel for processing
   // and print result
-  for (i = 0; i < (sizeof(data)/sizeof(data[0])); i++)
+  for (i = 0; i < num_data; i++)
   {
     hc.Send(&data[i], 1, 0);
     hc.ReceiveCount(flit_buffer);
